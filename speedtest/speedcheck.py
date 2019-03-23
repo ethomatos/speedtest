@@ -21,7 +21,7 @@ initialize(**options)
 
 statsd.namespace = 'et.raspi1.statsd'
 statsd.constant_tags = ['owner', 'et']
-statsd.service_check('et_rasp1_service.service_check', 'DogStatsd.WARNING', tags=["service:rasp1"])
+statsd.service_check('raspstatcheck', 'DogStatsd.WARNING', tags=["service:rasp1"])
 
 response = subprocess.Popen('/usr/bin/speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read()
 response = response.decode()
