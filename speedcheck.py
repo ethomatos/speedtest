@@ -25,6 +25,8 @@ statsd.service_check('raspstatcheck', 'DogStatsd.WARNING', tags=["service:rasp1"
 
 response = subprocess.Popen('/usr/bin/speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read()
 response = response.decode()
+with open('/var/log/router.log', 'w') as logfile:
+	logfile.write(response)
 ping = re.findall('Ping:\s(.*?)\s', response, re.MULTILINE)
 download = re.findall('Download:\s(.*?)\s', response, re.MULTILINE)
 upload = re.findall('Upload:\s(.*?)\s', response, re.MULTILINE)
