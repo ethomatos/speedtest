@@ -19,17 +19,16 @@ options = {
 
 initialize(**options)
 
-statsd.namespace = 'et.pi.statsd'
+statsd.namespace = 'et.statsd'
 statsd.constant_tags = ['owner', 'et']
-#statsd.service_check('picheck', 'DogStatsd.WARNING', tags=["service:rasp"])
 
 response = subprocess.Popen('/usr/bin/speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read()
 response = response.decode()
 ping = re.findall('Ping:\s(.*?)\s', response, re.MULTILINE)
 download = re.findall('Download:\s(.*?)\s', response, re.MULTILINE)
 upload = re.findall('Upload:\s(.*?)\s', response, re.MULTILINE)
-statsd.gauge('ping', ping[0], tags=["host:raspberrypi"])
-statsd.gauge('download', download[0], tags=["host:raspberrypi"])
-statsd.gauge('upload', upload[0], tags=["host:raspberrypi"])
+statsd.gauge('ping', ping[0])
+statsd.gauge('download', download[0])
+statsd.gauge('upload', upload[0])
 
 
