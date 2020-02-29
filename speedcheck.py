@@ -13,23 +13,23 @@ Upload: 92.10 Mbit/s
 """
 
 options = {
-	'api_key':'fc2e8f7e96275667061a287a1f934d7e',
-	'app_key':'d0217cb86082c8816232eb3647816fca6cfb39bc'
+	'api_key':'422d29499d5436d8f9db64f8b32870b8',
+	'app_key':'dd88c2e85937d3cd0086c45ffda23b78d9b1920f'
 }
 
 initialize(**options)
 
-statsd.namespace = 'et.raspi1.statsd'
+statsd.namespace = 'et.pi.statsd'
 statsd.constant_tags = ['owner', 'et']
-statsd.service_check('raspstatcheck', 'DogStatsd.WARNING', tags=["service:rasp1"])
+#statsd.service_check('picheck', 'DogStatsd.WARNING', tags=["service:rasp"])
 
 response = subprocess.Popen('/usr/bin/speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read()
 response = response.decode()
-with open('/var/log/router.log', 'a') as logfile:
-	logfile.write(response)
 ping = re.findall('Ping:\s(.*?)\s', response, re.MULTILINE)
 download = re.findall('Download:\s(.*?)\s', response, re.MULTILINE)
 upload = re.findall('Upload:\s(.*?)\s', response, re.MULTILINE)
-statsd.gauge('ping', ping[0], tags=["ping:rasp1"])
-statsd.gauge('download', download[0], tags=["download:rasp1"])
-statsd.gauge('upload', upload[0], tags=["upload:rasp1"])
+statsd.gauge('ping', ping[0], tags=["host:raspberrypi"])
+statsd.gauge('download', download[0], tags=["host:raspberrypi"])
+statsd.gauge('upload', upload[0], tags=["host:raspberrypi"])
+
+
