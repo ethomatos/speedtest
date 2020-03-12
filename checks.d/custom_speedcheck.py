@@ -24,8 +24,7 @@ Upload: 92.10 Mbit/s
 
 class SpeedCheck(AgentCheck):
 	def check(self, instance):
-		#statsd.namespace = 'et.pi.statsd'
-		#statsd.constant_tags = ['owner', 'et']
+		tag = "owner:et"
 		
 		response = subprocess.Popen('/usr/local/bin/speedtest-cli --simple', shell=True, stdout=subprocess.PIPE).stdout.read()
 		response = response.decode()
@@ -33,8 +32,8 @@ class SpeedCheck(AgentCheck):
 		download = re.findall('Download:\s(.*?)\s', response, re.MULTILINE)
 		upload = re.findall('Upload:\s(.*?)\s', response, re.MULTILINE)
 
-		self.gauge('system.net.ping', ping[0], tags=["owner:et"])
-		self.gauge('system.net.download', download[0], tags=["owner:et"])
-		self.gauge('system.net.upload', upload[0], tags=["owner:et"])
+		self.gauge('system.net.ping', ping[0], tags=[tag])
+		self.gauge('system.net.download', download[0], tags=[tag])
+		self.gauge('system.net.upload', upload[0], tags=[tag])
 
 
