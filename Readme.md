@@ -21,7 +21,7 @@ On RedHat or CentOS use:
 `sudo  yum install speedtest-cli`
 
 
-### Installing the files
+### Installing the custom agent check
 Step 1. Clone the repository
 
 Step 2. Copy the files from the repository's ./speedcheck directory
@@ -29,3 +29,10 @@ Step 2. Copy the files from the repository's ./speedcheck directory
   - Take the file in conf.d and copy it into your agent's conf.d directory
 
 Step 3. Update the Python script in `checks.d` to reference your own  tag of `owner:me` instead of `owner:et`
+
+
+### Restart the agent and check results
+- The agent needs to restart afterwards check for these metrics in whatever account your agent reports into.
+  - system.net.ping
+  - system.net.download
+  - system.net.upload
