@@ -13,8 +13,8 @@ Upload: 92.10 Mbit/s
 """
 
 options = {
-	'api_key':'422d29499d5436d8f9db64f8b32870b8',
-	'app_key':'dd88c2e85937d3cd0086c45ffda23b78d9b1920f'
+	'api_key':'get_your_own',
+	'app_key':'get_your_own'
 }
 
 initialize(**options)
