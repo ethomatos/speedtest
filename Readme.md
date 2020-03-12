@@ -28,4 +28,4 @@ Step 2. Copy the files from the repository's ./speedcheck directory
   - Take the file in checks.d and copy it into your agent's checks.d directory
   - Take the file in conf.d and copy it into your agent's conf.d directory
 
-Step 3. Update the Python script to reference your own  tag of `owner:me` instead of `owner:et`
+Step 3. Update the Python script in `checks.d` to reference your own  tag of `owner:me` instead of `owner:et`
