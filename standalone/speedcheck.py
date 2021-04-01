@@ -50,7 +50,5 @@ if __name__ == "__main__":
 	args = parser.parse_args()
 	tokenfile = args.i if args.i else 'dd.keys'
 	# acquire api keys
-	dir = '/home/et/dev/speedtest/standalone'
-	initfile = dir + "/" + tokenfile
-	keys = json.load(open(initfile))
+	keys = json.load(open(tokenfile))
 	main(keys)
