@@ -1,5 +1,5 @@
 ### MacOS
-On MacOS install using brew the utiiity `speedtest-cli`. The command will be:
+On MacOS install using brew the utility `speedtest-cli`. The command will be:
 `brew install speedtest-cli`
 
 After installing test it by running from a terminal the command:
