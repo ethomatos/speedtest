@@ -36,3 +36,11 @@ Step 3. Update the Python script in `checks.d` to reference your own  tag of `ow
   - system.net.ping
   - system.net.download
   - system.net.upload
+
+
+### Not interested on standalone and custom checks? Use this Docker container and Kubernetes approach instead.
+Step 1. Build the Docker container image using the Python script or just use the image `ethomatos/speedtest:latest`.
+
+Step 2. Use cronjob resources in a Kubernetes cluster to run the speedtest from inside the container in a temporarily executed pod.
+
+Step 3. An agent with statsd needs to be running inside the cluster.

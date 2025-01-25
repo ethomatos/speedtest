@@ -1,0 +1,40 @@
+# kubernetes/cronjob.yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: speedtest-check
+  namespace: default
+spec:
+  schedule: "*/2 * * * *"  # Run every 2 minutes
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: speedtest
+            image: ethomatos/speedtest:latest
+            env:
+            - name: SECRET_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: datadog-secret
+                  key: api-key
+            resources:
+              requests:
+                memory: "128Mi"
+                cpu: "100m"
+              limits:
+                memory: "256Mi"
+                cpu: "200m"
+          restartPolicy: OnFailure
+
+---
+# kubernetes/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: speedtest-config
+  namespace: default
+data:
+  DD_SITE: "datadoghq.com"
+  DD_API_KEY: ${SECRET_API_KEY}
